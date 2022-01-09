@@ -75,7 +75,7 @@ This module has two responsibilities:
 ## The 4 ways of stoping transitive dependencies
 
 1. Using **maven exclusions** (mentioned before). It easily does the job without side effects. Note it's configured on the `dependent side`.
-2. Using a **separated module for *input ports*** (also mentioned before). That's the purest way of doing that (software desing). The cost is to add some overhead to the project structure and code.
+2. Using a **separated module for *input ports*** (also mentioned before). That's the purest way of doing that (software design). The cost is to add some overhead to the project structure and code.
 3. Using **Java 9 Modules** (Jigsaw). That requires management of the `module-info.java` hierarchy that produces some noise. That's also, in some sense, a duplication of maven's work. Finally, you will be forced to do extra configurations to make maven works with annotation processors tools like Lombok. Note it's configured on the `dependency side`.
 4. Using **architecture checks** in build time.
 
