@@ -53,15 +53,15 @@ This maven module belongs to the **infra layer** (outside the hexagon) because i
 
 As a *positive side-effect*, this organizes your modules in the package explorer in the same way you read hexagonal architecture diagrams: From **the left to the right side**.
 
-You might know this is not the unique technique of stopping transitive dependencies, but you **ALWAYS** will need to make the *api* a separated maven module, no matter the technique. We will discuss more this in the section ***The 4 ways of stoping transitive dependencies***.
+You might know this is not the unique technique to stop transitive dependencies, but you **ALWAYS** will need to make the *api* a separated maven module, no matter the technique. We will discuss more this in the section ***The 4 ways of stoping transitive dependencies***.
 
 ## app
 This module is the **application layer**. This is already inside the hexagon. Here are the **input ports**. On this point an important question is raised:
 
 Should an **input port** port be a java *interface* or a *concrete class*? Wouldn't be a waste declaring an interface since the input port are implemented just *one time* by *application services* inside the hexagon?
 
-1. The use of **interfaces** just makes sense **if it was packaged alone** in its maven module (in other words, in a separated jar) **to stop the transitive dependency** from the **api** to the **domain**. If you do that, you wouldn't need the `maven exclusions` anymore since the `api module` would reference just the separated interfaces module.
-2. I prefer to use concrete classes as **input ports** and let `maven exclusions` do the job of stoping the transitive dependencies. I explain my preference in the section ***The 4 ways of stoping transitive dependencies***.
+1. The use of **interfaces** makes sense **if they are packaged alone** in its maven module (in other words, in a separated jar) **to stop the transitive dependency** from the **api** to the **domain**. If you do that, you wouldn't need the `maven exclusions` anymore since the `api module` would reference just the separated interfaces module.
+2. I prefer to use concrete classes as **input ports** and let `maven exclusions` do the job of stoping the transitive dependencies. I can see the comparison of techniques in the section ***The 4 ways of stoping transitive dependencies***.
 
 ## domain
 This module is the classical layer with aggregates, entities, value objects, and domain services. *Some* domain services are technical and must be declared as **interfaces**. Those are **output ports**, for example, repositories interfaces.
@@ -74,11 +74,9 @@ This module has two responsibilities:
 
 ## The 4 ways of stoping transitive dependencies
 
-Indeed, there are **4 ways** of stoping transitive dependencies. 
-
-1. Using **maven exclusions** (mentioned before). Note it's configured on the `dependent side`.
-2. Using a **separated module for *input ports*** (also mentioned before). That's the purest way of doing that. The cost is to add some overhead to the project structure and code.
-3. Using **Java 9 Modules** (Jigsaw). That requires management of the *module-info.java* hierarchy that produces some noise. That's also, in some sense, a duplication of maven's work. Finally, you will be forced to do extra configurations to make maven works with annotation processors tools like Lombok. Note it's configured on the `dependency side`.
+1. Using **maven exclusions** (mentioned before). It easily does the job without side effects. Note it's configured on the `dependent side`.
+2. Using a **separated module for *input ports*** (also mentioned before). That's the purest way of doing that (software desing). The cost is to add some overhead to the project structure and code.
+3. Using **Java 9 Modules** (Jigsaw). That requires management of the `module-info.java` hierarchy that produces some noise. That's also, in some sense, a duplication of maven's work. Finally, you will be forced to do extra configurations to make maven works with annotation processors tools like Lombok. Note it's configured on the `dependency side`.
 4. Using **architecture checks** in build time.
 
 ## Architecture checks in build time
