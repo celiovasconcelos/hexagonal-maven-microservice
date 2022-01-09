@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.thesystem</groupId>
+		<artifactId>thesystem</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<artifactId>api</artifactId>
+	<dependencies>
+		<dependency>
+			<groupId>com.thesystem</groupId>
+			<artifactId>app</artifactId>
+			<version>1.0.0</version>
+			<exclusions>
+				<exclusion>
+					<!-- VERY IMPORTANT: DISALLOW DOMAIN OBJECTS LEAKING TO THE API LAYER -->
+					<groupId>com.thesystem</groupId>
+					<artifactId>domain</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>5.2.15.RELEASE</version>
+		</dependency>
+	</dependencies>
+</project>
