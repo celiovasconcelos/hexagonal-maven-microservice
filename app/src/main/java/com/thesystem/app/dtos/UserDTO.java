@@ -8,7 +8,7 @@ import lombok.Data;
 public class UserDTO {
 
   private String name;
-  //private  User father; //uncomment this to see ArchUnit tests failing
+  //private User father; //uncomment this to see ArchUnit tests failing
 
   public UserDTO(User user) {
     this.name = user.getName();
