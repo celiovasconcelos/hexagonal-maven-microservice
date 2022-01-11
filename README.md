@@ -79,5 +79,5 @@ This module has two responsibilities:
 ## The 3 ways of stoping compile-time transitive dependencies
 
 1. Using **maven exclusions** (mentioned before). That's easy, but if you want to stop more transitive dependencies (e.g. `spring-tx`), you will need to add **more** maven exclusions. 
-2. Using **Java Modules**. That's very good, but requires management of the `module-info.java` hierarchy that produces some noise. That's also, in some sense, a duplication of maven's work. Finally, you will face some situations where it works on the IDE but not in the `mvn` command (this will force you to do some extra work).
+2. Using **Java Modules**. That's very good. The `requires` directive, when used alone, stops **all** transitive dependencies by default. On the other hand, Java Modules require management of the `module-info.java` files hierarchy that produces some noise. That's also, in some sense, a duplication of maven's work. Finally, you will face some situations where it works on the IDE but not in the `mvn` command (this will force you to do some extra work).
 3. Using a **separated module for *input ports*** (also mentioned before). That's the purest way of doing that (software design). Also, there is **no need** for `runtime checks` in build time (*the first two options need*). The cost is to add some overhead to the project structure and code.
