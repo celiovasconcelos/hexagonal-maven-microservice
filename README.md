@@ -65,7 +65,7 @@ Should an **input port** port be a java *interface* or a *concrete class*? Would
 3. DTOs:
     * I only use DTOs in the **application layer**. I mean that the **api** accepts and returns the **very same DTOs** from the application layer. I think declaring exclusive DTOs for the api module is a waste that forces extra mapping.
     * `maven exclusions` will protect the `api module` from **returning** and **receiving** *domain objects* as parameters (*compile-time dependency*) but will not prevent DTOs having *domain objects* **inside** them (*runtime dependency*). To prevent this I do some **runtime checks** in *build time* using the amazing [archuinit](https://archunit.org) tool. Please, see the test class `com.thesystem.test.ArchitectureTest`.
-    * Sometimes you want to deliver a **DTO that crosses many aggregate boundaries in a very fast fashion** (e.g sql joins). Most of the time your `application services` will be **concrete classes**, but for this case, you can declare it as an **interface** and implement it in the **infra layer**. This way, you *will bypass* the **domain layer** and have no problem doing this for **queries**.
+    * Sometimes you want to deliver a **DTO that crosses many aggregate boundaries in a very fast fashion** (e.g. sql joins). Most of the time your `application services` will be **concrete classes**, but for this case, you can declare it as an **interface** and implement it in the **infra layer**. This way, you *will bypass* the **domain layer** and have no problem doing this for **queries**.
 
 ## domain
 This module is the classical layer with aggregates, entities, value objects, and domain services. *Some* domain services are technical and must be declared as **interfaces**. Those are **output ports**, for example, repositories interfaces.
@@ -78,6 +78,6 @@ This module has two responsibilities:
 
 ## The 3 ways of stoping compile-time transitive dependencies
 
-1. Using **maven exclusions** (mentioned before). This is a ***blacklist*** on the `dependent side`. It's easy to use but if want to stop more dependecies (e.g `spring-tx`), you will need to add more exclusions. 
+1. Using **maven exclusions** (mentioned before). This is a ***blacklist*** on the `dependent side`.  That's easy, but if you want to stop more transitive dependencies (e.g. `spring-tx`), you will need to add **more** maven exclusions. 
 2. Using **Java Modules**. This is a ***whitelist*** on the `dependency side`. That's very good, but requires management of the `module-info.java` hierarchy that produces some noise. That's also, in some sense, a duplication of maven's work. Finally, you will face some situations where it works on the IDE but not in the `mvn` command (this will force you to do some extra work).
 3. Using a **separated module for *input ports*** (also mentioned before). That's the purest way of doing that (software design). Also, there is **no need** for `runtime checks` in build time (*the first two options need*). The cost is to add some overhead to the project structure and code.
