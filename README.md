@@ -46,7 +46,7 @@ What was the initial purpose of packing `input ports` in a separated module havi
 
 Short answer: **To stop transitive dependency to the domain.**
 
-So now, I have a new problem. My `domain objects` **can leak** to the `API module` (**outside** the hexagon) since the `app module` now has a transitive dependency to the `domain`.
+So now, I have a new problem. My `domain objects` **can leak** to the `api module` (**outside** the hexagon) since the `app module` now has a transitive dependency to the `domain`.
 
 ## The other two ways of stopping transitive dependencies
 
