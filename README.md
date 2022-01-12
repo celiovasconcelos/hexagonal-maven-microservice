@@ -40,8 +40,7 @@ Let's try to reduce it to **four** maven modules.
   * domain *(domain)*
   * infra *(output adapter + launch & config)*
 
-
-I have merged *(input port + application services)* in the `app` module. Now I can have **only concrete classes** there to the burden (interfaces have gone). But wait:
+I have merged *(input port + application services)* in the `app` module. Now I can have **only concrete classes** there to reduce the burden (interfaces have gone). But wait:
 
 What was the initial purpose of packing `input ports` in a separated module? 
 
