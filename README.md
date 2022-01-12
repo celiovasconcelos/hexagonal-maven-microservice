@@ -44,9 +44,11 @@ I have merged *(input port + application services)* in the `app` module. Now I c
 
 What was the initial purpose of packing `input ports` in a separated module having only interfaces and DTOs? 
 
-Short answer: **To stop transitive dependency to the domain.**
+Short answer: **To stop transitive dependency from the `api module` to the `domain`.**
 
-So now, I have a new problem. My `domain objects` **can leak** to the `api module` (**outside** the hexagon) since the `app module` now has a transitive dependency to the `domain`.
+Unfortunately, after merging, the transitive dependency came back. Now my `domain objects` **can leak** to the `api module` (**outside** the hexagon).
+
+Fortunately, there is hope.
 
 ## The other two ways of stopping transitive dependencies
 
