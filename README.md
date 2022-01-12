@@ -8,7 +8,7 @@ I couldn’t find any good project structure expressing the hexagonal architectu
 
 ![](https://i.imgur.com/elepnRz.png)
 
-That's beautiful. The ideal hexagonal architecture requires exactly **six** components. Your microservice project structure will look like this.:
+That's beautiful. The ideal hexagonal architecture requires exactly **six** components. Your microservice project structure will look like this:
 
 * thesystem (parent pom.xml)
   * api *(input adapter)*
