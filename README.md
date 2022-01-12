@@ -78,8 +78,8 @@ Let's see alternative techniques to solve that new problem.
 
 ### Java Modules
 * The `requires` java modules directive, when used alone, stops **all** transitive dependencies **by default**. That's very good!
-* On the other hand, Java Modules require management of the `module-info.java` files hierarchy that produces some noise. That's also, in some sense, a duplication of maven's work. Finally, you will be annoyed in some situations where everything works on the IDE but not in the `mvn` command.
-* You are going to need to use the archunit tool as well.
+* On the other hand, java modules need management of the `module-info.java` files hierarchy that produces some noise. That's also, in some sense, a duplication of maven's work. Finally, you will be annoyed in some situations where everything works on the IDE but not in the `mvn` command.
+* You will need those runtime checks with the archunit tool as well.
 
 ## infra
 The module infra is the sum of *(output adapter + launch & config)*. There aren't side effects here. This merge just makes sense to me.
