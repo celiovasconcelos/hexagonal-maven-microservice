@@ -46,7 +46,7 @@ What was the initial purpose of packing `input ports` in a separated module havi
 
 Short answer: **To stop transitive dependency from the `api module` to the `domain`.** 
 
-I saw many projects with separated application services interfaces in the **same module**. There is no sense in doing that. In this situation, `application services` should have no interfaces, **only concrete classes**. 
+I saw many projects with application services interfaces and their implementations in the **same module**. There is no sense in doing that. In this situation, `application services` should have no interfaces, **only concrete classes**. 
 
 Unfortunately, after merging, the transitive dependency came back. Now my `domain objects` **can leak** to the `api module` (**outside** the hexagon).
 
