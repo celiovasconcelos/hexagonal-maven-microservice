@@ -27,7 +27,7 @@ That's perfect, right?
 The ideal project structure has some drawbacks to me:
 
 1. I think that six maven modules are too much in the package explorer.
-2. I think declaring `application services` interfaces and implementing this in another module is boring.
+2. I think declaring interfaces in `application interfaces` module and after implementing them in the `application services` module is boring.
 3. I like to pass `domain objects` to DTO's constructors, but I can't do that. I must create `domain to dto` mapper classes in the `application services` module.
 
 ## Trying to shrink it
